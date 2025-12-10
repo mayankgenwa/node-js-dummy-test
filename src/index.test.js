@@ -20,7 +20,6 @@
 //     });
 // });
 
-
 const assert = require('assert');
 
 describe('CI Agent Verification', function() {
