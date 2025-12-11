@@ -2,6 +2,7 @@ const app = require("express")();
 const supertest = require("supertest");
 const request = supertest(app);
 
+const x = 10;
 
 app.get("/", function (req, res) {
     res.status(200).send("practise with kubernetes");
