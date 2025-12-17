@@ -31,7 +31,7 @@ jobs:
       # This checks for known vulnerabilities in your dependencies
       - name: Security Audit
         run: npm audit --audit-level=high
-        continue-on-error: true # Let it run so your Agent can see the logs even if it fails
+        # continue-on-error: true # Let it run so your Agent can see the logs even if it fails
 
       # 5. Linting / Static Analysis (User Story 4)
       # Since this project might not have a lint script, we try to run it if present,
