@@ -1,0 +1,33 @@
+name: Snyk Security Scan
+
+on:
+  push:
+    # Triggers on push events to any branch
+  pull_request:
+    # Triggers on pull requests targeting any branch
+
+jobs:
+  snyk-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Best practice to use an LTS version
+
+      - name: Install dependencies
+        # Snyk needs node_modules to be present to build the dependency tree
+        run: npm install
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          # Options:
+          # --severity-threshold=high (Only fail on high/critical issues)
+          # --all-projects (If you have multiple package.json files)
+          args: --severity-threshold=high
